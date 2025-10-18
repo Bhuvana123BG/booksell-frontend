@@ -8,5 +8,5 @@ cd booksell-frontend
 
 npm i
 
-## 4️⃣ Run dev server
+## 3️⃣ Run development server
 npm run dev
