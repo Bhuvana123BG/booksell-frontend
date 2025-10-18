@@ -1,15 +1,11 @@
-# 1️⃣ Create React + Vite project
+##1️⃣ Create New React + Vite project
 npm create vite@latest booksell-frontend -- --template react
 
 
 cd booksell-frontend
 
-# 2️⃣ Install runtime dependencies
-npm install i
+##2️⃣ Install runtime dependencies
+npm i
 
-# 3️⃣ Install dev dependencies
-npm install -D i
-
-
-#  🔟 Run dev server
+## 4️⃣ Run dev server
 npm run dev
