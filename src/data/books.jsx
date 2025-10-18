@@ -36,7 +36,7 @@ export const booksRes = [
     "price": 450.00,
     "description": "What the rich teach their kids about money that the poor and middle class do not!",
     "stockQuantity": 8,
-    "imageUrl": "https://images.unsplash.com/photo-1529651737248-dad5e20f84e0",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTra3n2OtU7HMg6FOIfEltWYAEi_dg5U4uklA&s",
     "isbn": "9781612680194"
   }
 ];

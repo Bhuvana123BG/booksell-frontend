@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Trash2 } from "lucide-react";
+import { Trash2, Plus, Minus } from "lucide-react";
 
-const CartItemCard = ({ item, onRemove }) => {
+const CartItemCard = ({ item, onIncrease, onDecrease, onRemove }) => {
   const { book, quantity } = item;
 
   return (
@@ -23,17 +23,30 @@ const CartItemCard = ({ item, onRemove }) => {
         <div>
           <h2 className="text-lg font-semibold text-gray-800">{book.title}</h2>
           <p className="text-gray-600 text-sm italic">{book.author}</p>
-          <p className="text-gray-500 text-sm mt-1 line-clamp-2">
-            {book.description}
-          </p>
+          <p className="text-gray-700 font-semibold mt-1">₹{book.price}</p>
         </div>
 
         <div className="flex justify-between items-center mt-3">
-          <p className="text-blue-700 font-bold text-lg">
-            ₹{book.price} × {quantity}
-          </p>
+          {/* Quantity Controls */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => onDecrease(item.id)}
+              className="bg-gray-200 rounded-full p-1 hover:bg-gray-300 transition"
+            >
+              <Minus size={16} />
+            </button>
+            <span className="text-lg font-medium">{quantity}</span>
+            <button
+              onClick={() => onIncrease(item.id)}
+              className="bg-gray-200 rounded-full p-1 hover:bg-gray-300 transition"
+            >
+              <Plus size={16} />
+            </button>
+          </div>
+
+          {/* Total Price */}
           <p className="text-gray-700 font-semibold">
-            Total: ₹{(book.price * quantity).toFixed(2)}
+            ₹{(book.price * quantity).toFixed(2)}
           </p>
         </div>
       </div>
@@ -41,7 +54,7 @@ const CartItemCard = ({ item, onRemove }) => {
       {/* Remove Button */}
       <button
         onClick={() => onRemove(item.id)}
-        className="text-red-500 hover:text-red-700 transition"
+        className="text-red-500 hover:text-red-700 transition self-start"
       >
         <Trash2 size={20} />
       </button>
