@@ -1,17 +1,48 @@
-import { useState } from "react";
-import { books } from "../data/books";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import BookCard from "./BookCard";
+import { booksRes, popularRes } from "../data/books";
 
 const Home = () => {
   const [search, setSearch] = useState("");
+  const [books, setBooks] = useState([]);
+  const [popularBooks, setPopularBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data from backend
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        // const [booksRes, popularRes] = await Promise.all([
+        //   fetch("http://localhost:8080/books"),
+        //   fetch("http://localhost:8080/popular-books"),
+        // ]);
+
+        // const booksData = await booksRes.json();
+        // const popularData = await popularRes.json();
+
+        const booksData = booksRes;
+        const popularData = popularRes;
+
+        setBooks(booksData);
+        setPopularBooks(popularData);
+      } catch (err) {
+        console.error("Error fetching books:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
+  }, []);
 
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const popularBooks = filteredBooks.filter((b) => b.popular);
-  const allBooks = filteredBooks; // include all books
+  const filteredPopularBooks = popularBooks.filter((p) =>
+    p.book.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   // Motion variants
   const sectionVariant = {
@@ -23,6 +54,14 @@ const Home = () => {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1 },
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-gray-600">
+        Loading books...
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 space-y-12 bg-gray-50">
@@ -65,22 +104,22 @@ const Home = () => {
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-blue-600 pl-3">
           🌟 Popular Books
         </h2>
-        {popularBooks.length > 0 ? (
+        {filteredPopularBooks.length > 0 ? (
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {popularBooks.map((book, i) => (
+            {filteredPopularBooks.map((p, i) => (
               <motion.div
-                key={book.id}
+                key={p.id}
                 variants={cardVariant}
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: i * 0.1 }}
               >
-                <BookCard book={book} />
+                <BookCard book={p.book} />
               </motion.div>
             ))}
           </div>
         ) : (
-          <p className="text-gray-600 text-center">No books found.</p>
+          <p className="text-gray-600 text-center">No popular books found.</p>
         )}
       </motion.section>
 
@@ -94,9 +133,9 @@ const Home = () => {
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-green-600 pl-3">
           📖 All Books
         </h2>
-        {allBooks.length > 0 ? (
+        {filteredBooks.length > 0 ? (
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {allBooks.map((book, i) => (
+            {filteredBooks.map((book, i) => (
               <motion.div
                 key={book.id}
                 variants={cardVariant}

@@ -9,7 +9,7 @@ const BookCard = ({ book }) => {
       {/* Book Image */}
       <div className="flex justify-center">
         <img
-          src={book.image}
+          src={book.imageUrl}
           alt={book.title}
           className="w-full h-56 object-cover rounded-lg"
         />

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import LeftSideImage from "./LeftSideImage";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+import appleIcon from "../assets/icons8-apple.svg";
+import googleIcon from "../assets/icons8-google-50.svg";
+
+const Login = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,7 +19,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoggedIn(true);
     console.log("Login:", formData);
+    alert("Login Success!");
+    navigate("/");
   };
 
   return (
@@ -91,10 +99,10 @@ const Login = () => {
 
             <div className="flex justify-center space-x-4 mt-4">
               <button className="border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50">
-                <img src="/google-icon.svg" alt="Google" className="h-6 w-6" />
+                <img src={googleIcon} alt="Google" className="h-6 w-6" />
               </button>
               <button className="border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50">
-                <img src="/apple-icon.svg" alt="Apple" className="h-6 w-6" />
+                <img src={appleIcon} alt="Apple" className="h-6 w-6" />
               </button>
             </div>
           </form>
