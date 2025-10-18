@@ -5,7 +5,8 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-10 py-4 bg-white shadow-md sticky top-0 z-50">
       <h1 className="text-3xl font-extrabold text-blue-700 tracking-wide">
-        📚 BookVerse
+
+        <Link to="/">📚 BookVerse</Link>
       </h1>
 
       <div className="flex items-center gap-4">
