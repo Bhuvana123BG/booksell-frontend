@@ -1,0 +1,51 @@
+export const books = [
+    {
+      id: 1,
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      price: 499,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWhmsfjBUdzy9FZDyZZmr4BfNXLibp9T0PMfDOo5vUEUKnGb0SwO3G0m44CI53DXRZEQSMA",
+      popular: false,
+    },
+    {
+      id: 2,
+      title: "1984",
+      author: "George Orwell",
+      price: 399,
+      image: "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
+      popular: true,
+    },
+    {
+      id: 3,
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee",
+      price: 459,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS68RY84hFCFEv79YFlT9_dhetWuxhIO9Un6w&s",
+      popular: true,
+    },
+    {
+      id: 4,
+      title: "Atomic Habits",
+      author: "James Clear",
+      price: 499,
+      image: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg",
+      popular: true,
+    },
+    {
+      id: 5,
+      title: "The Alchemist",
+      author: "Paulo Coelho",
+      price: 349,
+      image: "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg",
+      popular: true,
+    },
+    {
+      id: 6,
+      title: "Rich Dad Poor Dad",
+      author: "Robert Kiyosaki",
+      price: 459,
+      image: "https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg",
+      popular: false,
+    },
+  ];
+  
