@@ -13,10 +13,26 @@ const Home = () => {
   const popularBooks = filteredBooks.filter((b) => b.popular);
   const allBooks = filteredBooks; // include all books
 
+  // Motion variants
+  const sectionVariant = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const cardVariant = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
     <div className="p-8 space-y-12 bg-gray-50">
       {/* Hero Section */}
-      <section className="text-center bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl py-16 shadow-sm">
+      <motion.section
+        className="text-center bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl py-16 shadow-sm"
+        variants={sectionVariant}
+        initial="hidden"
+        animate="visible"
+      >
         <h1 className="text-5xl font-extrabold text-blue-700 mb-4">
           Discover Your Next Favorite Book
         </h1>
@@ -37,39 +53,65 @@ const Home = () => {
             Search
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Popular Books */}
-      <section>
+      <motion.section
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-blue-600 pl-3">
           🌟 Popular Books
         </h2>
         {popularBooks.length > 0 ? (
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {popularBooks.map((book) => (
-              <BookCard key={book.id} book={book} />
+            {popularBooks.map((book, i) => (
+              <motion.div
+                key={book.id}
+                variants={cardVariant}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: i * 0.1 }}
+              >
+                <BookCard book={book} />
+              </motion.div>
             ))}
           </div>
         ) : (
           <p className="text-gray-600 text-center">No books found.</p>
         )}
-      </section>
+      </motion.section>
 
       {/* All Books */}
-      <section>
+      <motion.section
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-green-600 pl-3">
           📖 All Books
         </h2>
         {allBooks.length > 0 ? (
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {allBooks.map((book) => (
-              <BookCard key={book.id} book={book} />
+            {allBooks.map((book, i) => (
+              <motion.div
+                key={book.id}
+                variants={cardVariant}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: i * 0.05 }}
+              >
+                <BookCard book={book} />
+              </motion.div>
             ))}
           </div>
         ) : (
           <p className="text-gray-600 text-center">No books found.</p>
         )}
-      </section>
+      </motion.section>
     </div>
   );
 };
