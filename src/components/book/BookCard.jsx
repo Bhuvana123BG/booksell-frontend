@@ -7,6 +7,7 @@ const BookCard = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+
   const handleAddToCart = async (e) => {
     e.stopPropagation();
     setLoading(true);
@@ -52,9 +53,8 @@ const BookCard = ({ book }) => {
           <div className="mt-3">
             <p className="text-blue-700 font-bold text-lg sm:text-xl">₹{book.price}</p>
             <button
-              className={`mt-3 w-full ${
-                loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
-              } text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition font-semibold text-sm sm:text-base`}
+              className={`mt-3 w-full ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+                } text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition font-semibold text-sm sm:text-base`}
               onClick={handleAddToCart}
               disabled={loading}
             >

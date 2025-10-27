@@ -19,6 +19,10 @@ const AllBooks = ({ books, cardVariant, sectionVariant }) => {
       {books.length > 0 ? (
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
           {books.map((book, i) => (
+
+            book.imageUrl=book.imageUrl.startsWith("/images/")
+            ? book.imageUrl.slice(8)  
+            : book.imageUrl,
             <motion.div
               key={book.id}
               variants={cardVariant}
@@ -27,6 +31,7 @@ const AllBooks = ({ books, cardVariant, sectionVariant }) => {
               transition={{ delay: i * 0.05 }}
               className="flex justify-center"
             >
+  
               <BookCard book={book} />
             </motion.div>
           ))}
