@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8080", // ✅ backend base URL
+    baseURL: "https://booksale-backend-latest.onrender.com", // ✅ backend base URL
     headers: {
         "Content-Type": "application/json",
     },
